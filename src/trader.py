@@ -24,6 +24,8 @@ load_dotenv()
 api_key = os.getenv("API_KEY")
 secret_key = os.getenv("SECRET_KEY")
 token_tg = os.getenv("TOKEN_TELEGRAM")
+chat_id = os.getenv("CHAT_ID")
+moeda_referencia = os.getenv("MOEDA")
 
 class TradeCrypto(ABC):
 
@@ -143,8 +145,8 @@ class TradeCryptoBynance(TradeCrypto):
             self.atualiza_rentabilidade(moeda)
         return erro
 
-    def avisar_telegram(self, msg, chat_id=None):
-        telegram = TelegramBot(token_tg)
+    def avisar_telegram(self, msg):
+        telegram = TelegramBot(token_tg, chat_id)
         telegram.enviar_mensagem(msg)
 
     def iniciar_trade(self, moeda):
@@ -175,4 +177,4 @@ if __name__ == "__main__":
     client = exchange.iniciar_conexao()
     App = TradeCryptoBynance(client)
     # App.iniciar_trade("BTCUSDT")
-    App.iniciar_trade("ETHUSDT")
+    App.iniciar_trade(moeda_referencia)

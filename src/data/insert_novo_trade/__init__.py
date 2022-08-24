@@ -1,0 +1,1 @@
+from data.insert_novo_trade.insert_trade import insert_trade_db

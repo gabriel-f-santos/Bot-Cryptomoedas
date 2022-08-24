@@ -1,0 +1,1 @@
+from data.set_rentabilidade.rentabilidade import atualiza_rentabilidade_db

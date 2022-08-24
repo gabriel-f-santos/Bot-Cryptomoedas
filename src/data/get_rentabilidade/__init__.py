@@ -1,0 +1,1 @@
+from data.get_rentabilidade.rentabilidade import get_rentabilidade_db

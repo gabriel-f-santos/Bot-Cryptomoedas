@@ -1,0 +1,1 @@
+from services.binance_api.binance_api import conexao_binance_api

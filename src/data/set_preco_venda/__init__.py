@@ -1,0 +1,1 @@
+from data.set_preco_venda.set_preco_venda import atualiza_preco_venda_db

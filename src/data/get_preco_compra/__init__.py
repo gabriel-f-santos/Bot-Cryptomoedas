@@ -1,0 +1,1 @@
+from data.get_preco_compra.preco_compra import get_preco_compra_db

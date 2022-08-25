@@ -26,6 +26,7 @@ secret_key = os.getenv("SECRET_KEY")
 token_tg = os.getenv("TOKEN_TELEGRAM")
 chat_id = os.getenv("CHAT_ID")
 moeda_referencia = os.getenv("MOEDA")
+teste = os.getenv("TEST")
 
 class TradeCrypto(ABC):
 
@@ -173,7 +174,7 @@ class TradeCryptoBynance(TradeCrypto):
                 self.avisar_telegram(msg)
 
 if __name__ == "__main__":
-    exchange = ExchangeAPI(api_key, secret_key, conexao_binance_api, test=True)
+    exchange = ExchangeAPI(api_key, secret_key, conexao_binance_api, test=teste)
     client = exchange.iniciar_conexao()
     App = TradeCryptoBynance(client)
     # App.iniciar_trade("BTCUSDT")

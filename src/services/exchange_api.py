@@ -16,4 +16,4 @@ class ExchangeAPI(ExchangeAPIABC):
         self.test = test
 
     def iniciar_conexao(self):
-        return self.conexao(self.api_key, self.secret_key)
+        return self.conexao(self.api_key, self.secret_key, test=self.test)

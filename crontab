@@ -3,4 +3,4 @@
 ## This will run every minute
 
 # Crypto Trading
-* * * * * root /usr/bin/bash /home/gabriel/Documents/Projetos/robos/robo-cripto/robo_medias_gabriel/run_trader_cron.sh >> /home/gabriel/Documents/cronlogs/crontab_3_script_log_$(date +\%Y\%m\%d).txt 2>&1
+* * * * * root /usr/bin/bash /home/ubuntu/NewtonBot/run_trader_cron.sh >> /home/cronlogs/crontab_3_script_log_$(date +\%Y\%m\%d).txt 2>&1

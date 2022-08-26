@@ -1,8 +1,8 @@
 #!/bin/bash
-. /home/gabriel/.bashrc
+. /home/ubuntu/.bashrc
 
 PATH=$(dirname "$0")
 
-cd /home/gabriel/Documents/Projetos/robos/robo-cripto/robo_medias_gabriel/ &&
+cd /home/ubuntu/NewtonBot &&
 source venv/bin/activate &&
 python ./src/trader.py

@@ -19,6 +19,7 @@ from sinal.media_movel import Sinal
 import pandas as pd
 from dotenv import load_dotenv
 import os
+from decimal import Decimal as D, ROUND_DOWN, ROUND_UP
 
 load_dotenv()
 api_key = os.getenv("API_KEY")
@@ -76,11 +77,13 @@ class TradeCryptoBynance(TradeCrypto):
         return saldo['free']
 
     def get_quantidade_minima_trade(self, moeda):
-        filtros = self.client.get_symbol_info(f'{moeda}')["filters"]
-        quantidade_minima = 0
-        for filtro in filtros:
-            if filtro["filterType"] == "LOT_SIZE":
-                quantidade_minima=filtro['minQty']
+        
+        info = client.get_symbol_info(symbol=moeda)
+        price_filter = float(info['filters'][0]['tickSize'])
+        ticker = client.get_symbol_ticker(symbol=moeda)
+        price = float(ticker['price'])
+        price = D.from_float(price).quantize(D(str(price_filter)))
+        quantidade_minima = float(info['filters'][2]['minQty']) # 'minQty'
         return quantidade_minima
 
     def get_usdt_holdings(self):
@@ -96,8 +99,8 @@ class TradeCryptoBynance(TradeCrypto):
             saldo = float(self.get_saldo(moeda))
             quantidade = float(self.get_saldo(moeda))
 
-        quantidade_minima = int(str(self.get_quantidade_minima_trade(moeda)).count('0')-2)
-        quantidade = round(quantidade, quantidade_minima)
+        quantidade_minima = self.get_quantidade_minima_trade(moeda)
+        quantidade = D.from_float(quantidade_minima).quantize(D(str(quantidade_minima))) 
         # if 'e-' in str(quantidade):
         #     quantidade = 0
         # else:

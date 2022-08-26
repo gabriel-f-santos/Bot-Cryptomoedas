@@ -97,7 +97,7 @@ class TradeCryptoBynance(TradeCrypto):
             quantidade = float(self.get_saldo(moeda))
 
         quantidade_minima = int(str(self.get_quantidade_minima_trade(moeda)).count('0')-2)
-        quantidade = round(math.floor(quantidade), quantidade_minima)
+        quantidade = round(quantidade, quantidade_minima)
         # if 'e-' in str(quantidade):
         #     quantidade = 0
         # else:

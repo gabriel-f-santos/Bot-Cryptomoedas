@@ -101,13 +101,6 @@ class TradeCryptoBynance(TradeCrypto):
 
         quantidade_minima = self.get_quantidade_minima_trade(moeda)
         quantidade = D.from_float(quantidade_minima).quantize(D(str(quantidade_minima))) 
-        # if 'e-' in str(quantidade):
-        #     quantidade = 0
-        # else:
-        #     primeira_posicao = str(quantidade_minima).find('1',)
-        #     quantidade_minima = float(str(quantidade_minima)[:primeira_posicao+1])
-        #     saldo = float(str(saldo)[:primeira_posicao+1])
-        #     quantidade = float(str(quantidade)[:primeira_posicao+1])
         print(f"saldo: {saldo}, qtd: {quantidade}")
         return quantidade
 
@@ -130,7 +123,7 @@ class TradeCryptoBynance(TradeCrypto):
     def executar_trade(self, moeda, posicao):
         log_datetime = datetime.now()
         preco = self.df.Close.iloc[-1]
-        if posicao:
+        if int(posicao) == 0:
             side='BUY'
         else:
             side='SELL'
@@ -162,6 +155,8 @@ class TradeCryptoBynance(TradeCrypto):
         posicao = get_posicao(moeda)
         sinal = Sinal(df).get_sinal(posicao)
         order = None
+        sinal = True
+        #print("Sinal: {sinal}")
         if sinal:
             print(f"Sinal {sinal}")
             order = self.executar_trade(moeda, posicao)

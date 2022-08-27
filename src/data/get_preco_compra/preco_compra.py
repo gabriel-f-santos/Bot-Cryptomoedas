@@ -17,6 +17,7 @@ def get_preco_compra_db(moeda):
         cursor = db_conn.cursor()
         cursor.execute(f'SELECT preco_compra FROM preco_compra WHERE Currency = "{moeda}" ORDER BY market_date DESC limit 1')
         pos = cursor.fetchone()
+        pos = clean_up_sql_out(pos,0)
         if pos == 'None' or pos == None:
             cursor.execute(f'INSERT INTO preco_compra (Currency, preco_compra) VALUES ("{moeda}", {0})')
             db_conn.commit()
